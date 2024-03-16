@@ -8,7 +8,6 @@
 -   [Running the Application](#running-the-application)
 -   [Testing](#testing)
 -   [Contributing](#contributing)
--   [License](#license)
 
 ## Prerequisites
 
