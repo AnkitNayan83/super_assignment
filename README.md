@@ -7,7 +7,7 @@
 -   [Installation](#installation)
 -   [Running the Application](#running-the-application)
 -   [Testing](#testing)
--   [Contributing](#contributing)
+-   [Project Structure](#project-structure)
 
 ## Prerequisites
 
