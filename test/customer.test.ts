@@ -36,7 +36,7 @@ jest.mock("../utils/db", () => ({
 describe("GET /transactions/:customerId", () => {
     test("should get all transactions of a customer", async () => {
         // Mock the return value of Prisma method
-        db.transaction.findMany.mockResolvedValue(mockTransactions);
+        prismaMock.transaction.findMany.mockResolvedValue(mockTransactions);
 
         // Send request to get all transactions of a customer
         const response = await request(app).get(`/transactions/${mockCustomerId}`);
@@ -51,7 +51,7 @@ describe("GET /transactions/:customerId", () => {
 describe("GET /sales-value-per-customer", () => {
     test("should get sales value per customer", async () => {
         // Mock the return value of Prisma method
-        db.customer.findMany.mockResolvedValue([
+        prismaMock.customer.findMany.mockResolvedValue([
             { id: "customer_id_1", name: "Customer 1", transactions: mockTransactions },
         ]);
 
