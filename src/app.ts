@@ -1,6 +1,5 @@
 import express from "express";
 import dotenv from "dotenv";
-
 import morgan from "morgan";
 import { errorMiddleware } from "./middleware/errorMiddleware";
 
@@ -11,11 +10,11 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 app.get("/test", (req, res, next) => {
-    res.status(200).send("TEST");
+    res.status(200).json({ message: "Testing server" });
 });
 
 app.get("*", (req, res, next) => {
-    res.status(404).send("<h1>404 Not found</h1>");
+    res.send("<h1>404 Not found</h1>");
 });
 
 app.use(errorMiddleware);

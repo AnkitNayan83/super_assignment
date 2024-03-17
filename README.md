@@ -2,12 +2,21 @@
 
 ## Table of Contents
 
+-   [Tech Stack](#tech-stack)
 -   [Prerequisites](#prerequisites)
 -   [env setup](#env-setup)
 -   [Installation](#installation)
 -   [Running the Application](#running-the-application)
 -   [Testing](#testing)
 -   [Project Structure](#project-structure)
+
+## Tech Stack
+
+-   NodeJs as a backend language.
+-   Express as a backend server.
+-   PostgreSQL as a database.
+-   Prisma for Schema and database queries.
+-   Jest for testing api's.
 
 ## Prerequisites
 
@@ -23,7 +32,7 @@ Create a .env file in your root directory and add thease following keys:
 ### If not using docker
 
     PORT=3000
-    DATABASE_URL="DB URL"
+    DATABASE_URL="postgresql://YourName:YourPassword@localhost:5432/mydb?schema=public"
     JWT_SECRET=YOUR SECRET
 
 ### If using docker
