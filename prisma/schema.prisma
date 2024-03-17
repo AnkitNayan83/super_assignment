@@ -38,6 +38,7 @@ enum PaymentMethodType {
 model PaymentMethod {
   id            String            @id @default(uuid())
   type          PaymentMethodType
+  amount        Float
   transactionId String
   transaction   Transaction       @relation(references: [id], fields: [transactionId], onDelete: Cascade)
   createdAt     DateTime          @default(now())
