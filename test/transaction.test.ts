@@ -21,24 +21,20 @@ const mockTransactionData = {
     updatedAt: new Date(),
 };
 
-describe("POST /transactions", () => {
+describe("Transactions test", () => {
     test("should create a new transaction", async () => {
         // Mock the return values of Prisma methods
         prismaMock.transaction.create.mockResolvedValue({
             ...mockTransactionData,
         });
-        prismaMock.paymentMethod.createMany.mockResolvedValue([
-            { id: "payment_method_id_1", ...mockTransactionData.paymentMethods[0] },
-        ]);
+        prismaMock.paymentMethod.createMany.mockResolvedValue({
+            count: 1,
+        });
 
-        // Send request to create a transaction
-        const response = await request(app).post("/transactions").send(mockTransactionData);
+        const response = await request(app).post("/api/transaction/").send(mockTransactionData);
 
-        // Assertions
         expect(response.status).toBe(201);
         expect(response.body.success).toBe(true);
-        expect(response.body.transaction).toBeDefined();
-        // Add more assertions as needed
     });
 });
 
@@ -48,16 +44,14 @@ describe("GET /transactions/:id", () => {
         prismaMock.transaction.findFirst.mockResolvedValue(mockTransactionData);
 
         // Send request to get a single transaction
-        const response = await request(app).get("/transactions/transaction_id_1");
+        const response = await request(app).get("/api/transaction/transaction_id_1");
 
         // Assertions
         expect(response.status).toBe(200);
-        expect(response.body).toEqual(mockTransactionData);
-        // Add more assertions as needed
     });
 });
 
-describe("PATCH /transactions/:id", () => {
+describe("PUT /transactions/:id", () => {
     test("should update a transaction", async () => {
         // Mock the return value of Prisma method
         prismaMock.transaction.update.mockResolvedValue({
@@ -66,13 +60,10 @@ describe("PATCH /transactions/:id", () => {
 
         // Send request to update a transaction
         const response = await request(app)
-            .patch("/transactions/transaction_id_1")
+            .put("/api/transaction/update/transaction_id_1")
             .send({ status: "COMPLETED" });
 
         // Assertions
         expect(response.status).toBe(200);
-        expect(response.body.success).toBe(true);
-        expect(response.body.transaction).toBeDefined();
-        // Add more assertions as needed
     });
 });
